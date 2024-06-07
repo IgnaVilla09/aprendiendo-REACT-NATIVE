@@ -7,8 +7,6 @@ export default function CustomInput({
 }) {
   return (
     <View>
-      <Text style={styles.heading}>APP CLASES INICIALES - CODER</Text>
-
       <View style={styles.box}>
         <TextInput
           style={styles.input}
