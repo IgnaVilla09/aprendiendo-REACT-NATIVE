@@ -10,6 +10,7 @@ import ProductItem from "../others/ProductItem.jsx";
 const ItemListCategory = ({
   categorySelected = "",
   setCategorySelected = () => {},
+  fontFamily,
 }) => {
   const [keyWord, setKeyword] = useState("");
   const [productsFiltered, setProductsFiltered] = useState([]);
@@ -38,10 +39,12 @@ const ItemListCategory = ({
       {/* BARRA DE BÚSQUEDA */}
       <Search onSearch={setKeyword} goBack={() => setCategorySelected("")} />
       {/* FlatList --> ProductItem */}
-      <Text>{error}</Text>
+      <Text style={{ fontFamily: fontFamily }}>{error}</Text>
       <FlatList
         data={productsFiltered}
-        renderItem={({ item }) => <ProductItem product={item} />}
+        renderItem={({ item }) => (
+          <ProductItem product={item} fontFamily={fontFamily} />
+        )}
         keyExtractor={(producto) => producto.id}
       />
     </View>

@@ -18,7 +18,7 @@ export default function App() {
 
   const [fontsLoaded, fontError] = useFonts({
     Mukta: require("./assets/Mukta-Regular.ttf"),
-    Bebas: require("./assets/BebasNeue-Regular.ttf"),
+    BebasNeue: require("./assets/BebasNeue-Regular.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -59,7 +59,7 @@ export default function App() {
 
   return (
     <View style={styles.body}>
-      <Header fontFamily="Bebas" />
+      <Header fontFamily="BebasNeue" />
       {/* <Text style={styles.textMukta}>Prueba de texto con Mukta</Text>
       <CustomInput
         textItemRef={textItem}
@@ -76,11 +76,15 @@ export default function App() {
       /> */}
 
       {!categorySelected ? (
-        <Home setCategorySelected={setCategorySelected} />
+        <Home
+          setCategorySelected={setCategorySelected}
+          fontFamily="BebasNeue"
+        />
       ) : (
         <ItemListCategory
           setCategorySelected={setCategorySelected}
           categorySelected={categorySelected}
+          fontFamily="BebasNeue"
         />
       )}
     </View>

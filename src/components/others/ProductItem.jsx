@@ -3,11 +3,15 @@ import React from "react";
 import Card from "./Card";
 import { colors } from "../../globals/colors.js";
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, fontFamily }) => {
   return (
     <Card style={styles.additionalStylesCard}>
-      <Text style={styles.textTitle}>{product.title}</Text>
-      <Text style={styles.textTitle}>$-{product.price} </Text>
+      <Text style={[styles.textTitle, { fontFamily: fontFamily }]}>
+        {product.title}
+      </Text>
+      <Text style={[styles.textTitle, { fontFamily: fontFamily }]}>
+        $-{product.price}{" "}
+      </Text>
       <Image
         resizeMode="cover"
         style={styles.image}

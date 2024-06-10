@@ -4,7 +4,7 @@ import { Entypo } from "@expo/vector-icons";
 const Header = ({ fontFamily }) => {
   return (
     <View style={styles.container}>
-      <Text style={[styles.headerText, { fontFamily }]}>E-commerce!</Text>
+      <Text style={[styles.headerText, { fontFamily }]}>Mukta</Text>
       <Entypo name="menu" size={24} color="black" />
     </View>
   );
