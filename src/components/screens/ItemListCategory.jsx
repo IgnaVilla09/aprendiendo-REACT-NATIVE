@@ -10,19 +10,27 @@ import ProductItem from "../others/ProductItem.jsx";
 const ItemListCategory = ({
   categorySelected = "",
   setCategorySelected = () => {},
-  fontFamily,
+  setItemIdSelected = ()=> {},
 }) => {
   const [keyWord, setKeyword] = useState("");
   const [productsFiltered, setProductsFiltered] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const regex = /\d/;
-    const Digits = regex.test(keyWord);
-
-    if (Digits) {
+    const regexDigits = /\d/;
+    const hasDigits = regexDigits.test(keyWord);
+  
+    if (hasDigits) {
       setError("Don't use digits");
       return;
+    }
+
+  const regexThreeOrMoreCharacter = /[a-zA-z]{3,}/;
+  const hasThreeOrMoreCharacter = regexThreeOrMoreCharacter.test(keyWord);
+
+    if(!hasThreeOrMoreCharacter && keyWord.length){
+      setError("Use at least 3 characters");
+      return
     }
 
     const productsPreFiltered = products.filter(
@@ -32,18 +40,17 @@ const ItemListCategory = ({
       product.title.toLocaleLowerCase().includes(keyWord.toLocaleLowerCase())
     );
     setProductsFiltered(productsFiter);
+    setError("");
   }, [keyWord, categorySelected]);
 
   return (
     <View style={styles.flatListContainer}>
-      {/* BARRA DE BÚSQUEDA */}
       <Search onSearch={setKeyword} goBack={() => setCategorySelected("")} />
-      {/* FlatList --> ProductItem */}
-      <Text style={{ fontFamily: fontFamily }}>{error}</Text>
+      <Text style={{ color: "red", fontSize: 18, marginTop: 10 }}>{error}</Text>
       <FlatList
         data={productsFiltered}
         renderItem={({ item }) => (
-          <ProductItem product={item} fontFamily={fontFamily} />
+          <ProductItem product={item} setItemIdSelected={setItemIdSelected} />
         )}
         keyExtractor={(producto) => producto.id}
       />
@@ -56,7 +63,7 @@ export default ItemListCategory;
 const styles = StyleSheet.create({
   flatListContainer: {
     width: "100%",
-    backgroundColor: colors.lightseagreen,
+    backgroundColor: "#0002",
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",

@@ -3,11 +3,11 @@ import React from "react";
 import Card from "./Card.jsx";
 
 // recibir la categoría seleccionada
-const CategoryItem = ({ category, selectCategory = () => {}, fontFamily }) => {
+const CategoryItem = ({ category, selectCategory = () => {} }) => {
   return (
     <Card style={styles.cardContainer}>
       <Pressable onPress={() => selectCategory(category)}>
-        <Text style={[styles.text, { fontFamily: fontFamily }]}>
+        <Text style={[styles.text]}>
           {category}
         </Text>
       </Pressable>
@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     marginVertical: 7,
   },
   text: {
-    color: "#fff",
-    fontSize: 20,
+    textTransform: "uppercase",
+    color: "#07b",
+    fontSize: 14,
   },
 });

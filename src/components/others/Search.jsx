@@ -6,7 +6,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
-const Search = ({ onSearch = () => {}, goBack = () => {} }) => {
+const Search = ({ onSearch = () => {}, error="", goBack = () => {} }) => {
   const [keyword, setKeyword] = useState("");
 
   return (
@@ -40,11 +40,14 @@ const styles = StyleSheet.create({
     gap: 18,
   },
   input: {
+    flex: 4,
     width: 250,
     padding: 8,
     fontSize: 18,
-    backgroundColor: colors.lightgreen,
+    backgroundColor: "#fff",
+    borderWidth: 3,
+    borderColor: "#0005",
     color: "#000",
-    borderRadius: 10,
+    borderRadius: 20,
   },
 });

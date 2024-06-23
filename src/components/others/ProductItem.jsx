@@ -1,22 +1,26 @@
-import { Image, StyleSheet, Text } from "react-native";
+import { Button, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Card from "./Card";
 import { colors } from "../../globals/colors.js";
 
-const ProductItem = ({ product, fontFamily }) => {
+const ProductItem = ({ product,  setItemIdSelected = () => {}}) => {
   return (
     <Card style={styles.additionalStylesCard}>
-      <Text style={[styles.textTitle, { fontFamily: fontFamily }]}>
-        {product.title}
-      </Text>
-      <Text style={[styles.textTitle, { fontFamily: fontFamily }]}>
-        $-{product.price}{" "}
-      </Text>
-      <Image
-        resizeMode="cover"
-        style={styles.image}
-        source={{ uri: product.images[0] }}
-      />
+      <Pressable onPress={() => setItemIdSelected(product.id)}>
+        <View style={styles.pressable}>
+          <Text style={[styles.textTitle]}>
+            {product.title}
+          </Text>
+          <Text style={[styles.textTitle]}>
+            ${product.price}{" "}
+          </Text>
+          <Image
+            resizeMode="cover"
+            style={styles.image}
+            source={{ uri: product.images[0] }}
+          />
+        </View>
+      </Pressable>
     </Card>
   );
 };
@@ -33,14 +37,19 @@ const styles = StyleSheet.create({
   additionalStylesCard: {
     paddingLeft: 10,
     flexDirection: "row",
-    height: 120,
-    width: 350,
-    justifyContent: "space-between",
+    height: 150,
+    width: 400,
+    justifyContent: "center",
     margin: 10,
   },
   textTitle: {
-    flex: 3,
-    marginHorizontal: 10,
+    alignSelf: "center",
+    width: 100,
     fontSize: 15,
+    color: "#000"
   },
+  pressable: {
+    width: "100%",
+    flexDirection: "row",
+  }
 });
